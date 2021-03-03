@@ -5,10 +5,8 @@ defmodule Day04 do
 
   @doc """
   ## Examples
-
       iex> Day04.get_total_valid_passports("/Users/d5lment/workspace/D5lmentsDojo/adventOfCode2020/advent_of_code_2020/lib/resources/day_04/input_04.txt")
       170
-
   """
   def get_total_valid_passports(file_path) do
     file_path
