@@ -19,10 +19,6 @@ defmodule Day04Test do
       sample_path_entries: sample_path_entries}
   end
 
-  test "Report 2 valid passports from sample input", %{sample_path_entries: sample_path_entries} do
-    assert Day04.get_total_valid_passports(sample_path_entries) == 2
-  end
-
   test "validate an incomplete and invalid passport", %{invalid_passport2: invalid_passport2} do
     assert Day04.validate_passport(invalid_passport2) == false
   end
@@ -93,65 +89,4 @@ defmodule Day04Test do
       ecl: "gry"
     ]
   end
-
-  # [
-    #   ["ecl:gry", "pid:860033327", "eyr:2020", "hcl:#fffffd", "byr:1937","iyr:2017", "cid:147", "hgt:183cm"],
-    #   ["iyr:2013", "ecl:amb", "cid:350", "eyr:2023", "pid:028048884", "hcl:#cfa07d","byr:1929"],
-    #   ["hcl:#ae17e1", "iyr:2013", "eyr:2024", "ecl:brn", "pid:760753108","byr:1931", "hgt:179cm"],
-    #   ["hcl:#cfa07d", "eyr:2025", "pid:166559648", "iyr:2011", "ecl:brn","hgt:59in"]
-    # ]
-
-    # orders_id =
-    #   Enum.reduce(deliveries, [], fn delivery, acc ->
-    #     acc ++ [delivery.order_id]
-    #   end)
-
-    # |> Enum.map(fn x ->
-    #     for val <- x, into: [], do: String.to_atom(val)
-    #   end)
-
-    # row = ["ecl:gry", "pid:860033327", "eyr:2020", "hcl:#fffffd", "byr:1937", "iyr:2017", "cid:147", "hgt:183cm"]
-    # for val <- row, into: [], do: String.to_atom(val)
-    # [
-    #   ["ecl", "gry"],
-    #   ["pid", "860033327"],
-    #   ["eyr", "2020"],
-    #   ["hcl", "#fffffd"],
-    #   ["byr", "1937"],
-    #   ["iyr", "2017"],
-    #   ["cid", "147"],
-    #   ["hgt", "183cm"]
-    # ]
-
-# #5 Pasar de esto (una lista de elementos)
-# ["ecl:gry", "pid:860033327", "eyr:2020", "hcl:#fffffd", "byr:1937", "iyr:2017", "cid:147", "hgt:183cm"]
-# a esto una key value list
-# [ecl: "gry", pid:"860033327", eyr:"2020", hcl:"#fffffd", byr:"1937", iyr:"2017", cid:"147", hgt:"183cm"]
-
-# #4 Obtener una lista de listas donde cada elemento correspindera a la llave del campo : valor del campo
-# [
-#   ["ecl:gry", "pid:860033327", "eyr:2020", "hcl:#fffffd", "byr:1937", "iyr:2017", "cid:147", "hgt:183cm"],
-#   ["iyr:2013", "ecl:amb", "cid:350", "eyr:2023", "pid:028048884", "hcl:#cfa07d", "byr:1929"],
-#   ["hcl:#ae17e1", "iyr:2013", "eyr:2024", "ecl:brn", "pid:760753108", "byr:1931", "hgt:179cm"],
-#   ["hcl:#cfa07d", "eyr:2025", "pid:166559648", "iyr:2011", "ecl:brn","hgt:59in"]
-# ]
-
-# #3 Eliminar de cada elemento de la lista los espacios vacios y reemplazar por salto de línea
-# ["ecl:gry\npid:860033327\neyr:2020\nhcl:#fffffd\nbyr:1937\niyr:2017\ncid:147\nhgt:183cm",
-#  "iyr:2013\necl:amb\ncid:350\neyr:2023\npid:028048884\nhcl:#cfa07d\nbyr:1929",
-#  "hcl:#ae17e1\niyr:2013\neyr:2024\necl:brn\npid:760753108\nbyr:1931\nhgt:179cm",
-#  "hcl:#cfa07d\neyr:2025\npid:166559648\niyr:2011\necl:brn\nhgt:59in"]
-
-# #2 Separar la cadena utilizando los renglones vacios como separador y obtener una lista
-# ["ecl:gry pid:860033327 eyr:2020 hcl:#fffffd byr:1937 iyr:2017 cid:147 hgt:183cm",
-#  "iyr:2013 ecl:amb cid:350 eyr:2023 pid:028048884 hcl:#cfa07d byr:1929",
-#  "hcl:#ae17e1 iyr:2013\neyr:2024\necl:brn pid:760753108 byr:1931\nhgt:179cm",
-#  "hcl:#cfa07d eyr:2025 pid:166559648\niyr:2011 ecl:brn hgt:59in"]
-
-# #1 Obtener las entradas del archivo (tal como existen)
-#     {:ok,
-#  "ecl:gry pid:860033327 eyr:2020 hcl:#fffffd\nbyr:1937 iyr:2017 cid:147 hgt:183cm
-#  \n\niyr:2013 ecl:amb cid:350 eyr:2023 pid:028048884\nhcl:#cfa07d byr:1929
-#  \n\nhcl:#ae17e1 iyr:2013\neyr:2024\necl:brn pid:760753108 byr:1931\nhgt:179cm
-#  \n\nhcl:#cfa07d eyr:2025 pid:166559648\niyr:2011 ecl:brn hgt:59in"}
 end

@@ -3,13 +3,6 @@ defmodule Day0402 do
   Documentation for `Day 04`.
   """
 
-  @doc """
-  ## Examples
-
-      iex> Day04.get_total_valid_passports("/Users/d5lment/workspace/D5lmentsDojo/adventOfCode2020/advent_of_code_2020/lib/resources/day_04/input_04.txt")
-      170
-
-  """
   def get_total_valid_passports(file_path) do
     file_path
     |> get_entries()
@@ -28,20 +21,16 @@ defmodule Day0402 do
 
   @spec validate_fields(:byr | :ecl | :eyr | :hcl | :hgt | :iyr | :pid, keyword) ::
           false | nil | true
-  def validate_fields(required_field, passport)do
+  def validate_fields(field, passport)do
     #http://erlang.org/doc/man/re.html
-    field_value = Keyword.get(passport, required_field)
-    case required_field do
+    field_value = Keyword.get(passport, field)
+    case field do
       :byr -> #four digits; at least 1920 and at most 2002
-        byr = Integer.parse(field_value)
-        Enum.member?(1920..2002, byr)
-
+        is_valid_range?(field_value, 1920, 2002)
       :iyr -> #four digits; at least 2010 and at most 2020
-        iyr = Integer.parse(field_value)
-        Enum.member?(2010..2020, iyr)
+        is_valid_range?(field_value, 2010, 2020)
       :eyr -> #four digits; at least 2020 and at most 2030
-        eyr = Integer.parse(field_value)
-        Enum.member?(2010..2020, eyr)
+        is_valid_range?(field_value, 2020, 2030)
       :hgt -> #a number followed by either cm or in:
         is_valid_hgt = Regex.match?(~r/^(\d{1,}cm|\d{1,}in)$/, field_value)
         if is_valid_hgt do
@@ -52,12 +41,10 @@ defmodule Day0402 do
           case hgt_units do
             "cm" ->
               #If cm, the number must be at least 150 and at most 193.
-              hgt = Integer.parse(hgt_value)
-              Enum.member?(150..193, hgt)
+              is_valid_range?(hgt_value, 150, 193)
             "in" ->
               #If in, the number must be at least 59 and at most 76
-              hgt = Integer.parse(hgt_value)
-              Enum.member?(59..76, hgt)
+              is_valid_range?(hgt_value, 59, 76)
           end
         end
       :hcl -> #a # followed by exactly six characters 0-9 or a-f.
@@ -67,6 +54,11 @@ defmodule Day0402 do
       :pid -> #a nine-digit number, including leading zeroes.
         Regex.match?(~r/^[\d]{9}$/, field_value)
     end
+  end
+
+  defp is_valid_range?(field_value, min, max) when is_integer(min) and is_integer(max) and is_binary(field_value) do
+    {value, _} = Integer.parse(field_value)
+    value >= min && value <= max
   end
 
   defp get_required_fields do
