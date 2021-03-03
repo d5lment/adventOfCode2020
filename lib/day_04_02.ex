@@ -3,6 +3,11 @@ defmodule Day0402 do
   Documentation for `Day 04`.
   """
 
+  @doc """
+  ## Examples
+      iex> Day0402.get_total_valid_passports("/Users/d5lment/workspace/D5lmentsDojo/adventOfCode2020/advent_of_code_2020/lib/resources/day_04/input_04.txt")
+      103
+  """
   def get_total_valid_passports(file_path) do
     file_path
     |> get_entries()
@@ -22,38 +27,51 @@ defmodule Day0402 do
   @spec validate_fields(:byr | :ecl | :eyr | :hcl | :hgt | :iyr | :pid, keyword) ::
           false | nil | true
   def validate_fields(field, passport)do
-    #http://erlang.org/doc/man/re.html
     field_value = Keyword.get(passport, field)
     case field do
-      :byr -> #four digits; at least 1920 and at most 2002
-        is_valid_range?(field_value, 1920, 2002)
-      :iyr -> #four digits; at least 2010 and at most 2020
-        is_valid_range?(field_value, 2010, 2020)
-      :eyr -> #four digits; at least 2020 and at most 2030
-        is_valid_range?(field_value, 2020, 2030)
-      :hgt -> #a number followed by either cm or in:
+      :hgt ->
         is_valid_hgt = Regex.match?(~r/^(\d{1,}cm|\d{1,}in)$/, field_value)
         if is_valid_hgt do
-          #179cm
           hgt_length = String.length(field_value)
           hgt_units = String.slice(field_value, (hgt_length-2)..hgt_length)
           hgt_value = String.slice(field_value, 0..(hgt_length-3))
-          case hgt_units do
-            "cm" ->
-              #If cm, the number must be at least 150 and at most 193.
-              is_valid_range?(hgt_value, 150, 193)
-            "in" ->
-              #If in, the number must be at least 59 and at most 76
-              is_valid_range?(hgt_value, 59, 76)
-          end
+          validate_field(field, hgt_value, hgt_units)
         end
-      :hcl -> #a # followed by exactly six characters 0-9 or a-f.
-        Regex.match?(~r/^#[\da-f]{6}$/, field_value)
-      :ecl -> #exactly one of: amb blu brn gry grn hzl oth.
-        Regex.match?(~r/^amb|blu|brn|gry|grn|hzl|oth$/, field_value)
-      :pid -> #a nine-digit number, including leading zeroes.
-        Regex.match?(~r/^[\d]{9}$/, field_value)
+      _ ->
+      validate_field(field, field_value)
     end
+  end
+
+  def validate_field(:byr, field_value) do
+    is_valid_range?(field_value, 1920, 2002)
+  end
+
+  def validate_field(:iyr, field_value) do
+    is_valid_range?(field_value, 2010, 2020)
+  end
+
+  def validate_field(:eyr, field_value) do
+    is_valid_range?(field_value, 2020, 2030)
+  end
+
+  def validate_field(:hcl, field_value) do
+    Regex.match?(~r/^#[\da-f]{6}$/, field_value)
+  end
+
+  def validate_field(:ecl, field_value) do
+    Regex.match?(~r/^amb|blu|brn|gry|grn|hzl|oth$/, field_value)
+  end
+
+  def validate_field(:pid, field_value) do
+    Regex.match?(~r/^[\d]{9}$/, field_value)
+  end
+
+  def validate_field(:hgt, field_value, "cm") do
+    is_valid_range?(field_value, 150, 193)
+  end
+
+  def validate_field(:hgt, field_value, "in") do
+    is_valid_range?(field_value, 59, 76)
   end
 
   defp is_valid_range?(field_value, min, max) when is_integer(min) and is_integer(max) and is_binary(field_value) do

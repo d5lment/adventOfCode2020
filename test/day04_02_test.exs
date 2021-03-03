@@ -16,15 +16,6 @@ defmodule Day0402Test do
   end
 
   test "Validate byr valid", %{valid_passport: valid_passport} do
-    passport =
-      [hgt: "183cm",
-      cid: "147",
-      iyr: "2017",
-      byr: "1937",
-      hcl: "#fffffd",
-      eyr: "2020",
-      pid: "860033327",
-      ecl: "gry"]
-    assert Day0402.validate_fields(:byr, passport) == true
+    assert Day0402.validate_fields(:byr, valid_passport) == true
   end
 end
