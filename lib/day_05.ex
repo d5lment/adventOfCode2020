@@ -5,10 +5,18 @@ defmodule Day05 do
   @heaviest_weight_column 3
   @factor_id 8
 
-  def get_ids() do
-    # ["BBFFFFBRLL", "BFBBBBFLLL", "FBBBFBFLLR", "BFBBBFBLRR"]
-    get_entries()
+  @doc """
+  ## Examples
+      iex> Day05.get_highest_id("/Users/d5lment/workspace/D5lmentsDojo/adventOfCode2020/advent_of_code_2020/lib/resources/day_05/input_05.txt")
+      883
+  """
+  def get_highest_id(path_entries) do
+    {:ok, contents} = File.read(path_entries)
+
+    contents
+    |> String.split("\n", trim: true)
     |> Enum.map(fn x -> get_id(x) end)
+    # |> Enum.sort()
     |> Enum.max()
   end
 
@@ -32,7 +40,7 @@ defmodule Day05 do
   end
 
   def get_column(boarding_pass) do
-    columns = String.slice(boarding_pass, 7..String.length(boarding_pass))
+    columns = String.slice(boarding_pass, @heaviest_weight..String.length(boarding_pass))
 
     columns
     |> String.graphemes()
@@ -91,11 +99,11 @@ defmodule Day05 do
   def calculate_row(lista, @heaviest_weight, acc) do
     {x1, x2} = List.last(acc)
     value = List.last(lista)
-    {x3, x4} = filter_range(x1, x2, @initial_lower_limit, value)
 
+    {x3, x4} = filter_range(x1, x2, @initial_lower_limit, value)
     case value do
       "F" -> x3
-      "B" -> x4
+      "B" -> x4-1
     end
   end
 
@@ -140,14 +148,5 @@ defmodule Day05 do
 
   def pow(base, 1), do: base
   def pow(base, exp), do: base * pow(base, exp - 1)
-
-  def get_entries() do
-    path_entries = "/Users/d5lment/workspace/D5lmentsDojo/adventOfCode2020/advent_of_code_2020/lib/resources/day_05/input_05.txt"
-    # path_entries = "/Users/d5lment/workspace/D5lmentsDojo/adventOfCode2020/advent_of_code_2020/lib/resources/day_05/input_05_sample.txt"
-    {:ok, contents} = File.read(path_entries)
-
-    contents
-    |> String.split("\n", trim: true)
-  end
 
 end
