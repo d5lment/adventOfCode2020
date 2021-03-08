@@ -1,4 +1,4 @@
-defmodule Day1Part2 do
+defmodule Day0102 do
   @moduledoc """
   The Elves in accounting are thankful for your help;
   one of them even offers you a starfish coin they had left over from a past vacation.
@@ -10,15 +10,6 @@ defmodule Day1Part2 do
   In your expense report, what is the product of the three entries that sum to 2020?
   """
 
-  @doc """
-  Hello world.
-
-  ## Examples
-
-      iex> Day1.hello()
-      :world
-
-  """
   def part_two do
     test_file = "/Users/d5lment/workspace/D5lmentsDojo/adventOfCode2020/day1/puzzle_input_d1_sample.txt"
     # test_file = "/Users/d5lment/workspace/D5lmentsDojo/adventOfCode2020/day1/puzzle_input_d1.txt"

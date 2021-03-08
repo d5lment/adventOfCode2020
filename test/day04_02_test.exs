@@ -38,7 +38,7 @@ defmodule Day0402Test do
     @doc """
       Validate specific field in a passport with an expected result to verify.
     """
-    test "Validate:It is #{@value} a/an #{@type_validation} #{@field}? #{@expected}" do
+    test "Validate: Is #{@value} a/an #{@type_validation} #{@field}? #{@expected}" do
       assert Day0402.validate_fields(@field, @test_passport) == @expected
     end
   end
