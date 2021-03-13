@@ -16,7 +16,6 @@ defmodule Day05 do
     contents
     |> String.split("\n", trim: true)
     |> Enum.map(fn x -> get_id(x) end)
-    # |> Enum.sort()
     |> Enum.max()
   end
 
@@ -128,7 +127,7 @@ defmodule Day05 do
 
     new_upper_limit =
       case lower_limit do
-        1 -> half
+        @initial_lower_limit -> half
         _ -> lower_limit + half
       end
     {new_lower_limit, new_upper_limit}
