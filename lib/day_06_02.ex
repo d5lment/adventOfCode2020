@@ -1,8 +1,8 @@
-defmodule Day06 do
+defmodule Day0602 do
   @pattern_row ~r/^[a-z]+$/
 
   @moduledoc """
-      iex> Day06.count_yes_questions("/Users/d5lment/workspace/D5lmentsDojo/adventOfCode2020/advent_of_code_2020/lib/resources/day_06/input_06.txt")
+      iex> Day0602.count_yes_questions("/Users/d5lment/workspace/D5lmentsDojo/adventOfCode2020/advent_of_code_2020/lib/resources/day_06/input_06.txt")
       6387
   """
   def count_yes_questions(file_path) do
@@ -17,15 +17,6 @@ defmodule Day06 do
       end)
       |> Enum.sum()
   end
-
-  # matr =
-    # [
-    #   ["b"],
-    #   [["a"], ["a"], ["a"], ["a"]],
-    #   [["a", "b"], ["a", "c"]],
-    #   [["a"], ["b"], ["c"]],
-    #   ["a", "b", "c"]
-    # ]
 
   def get_entries(file_path) do
     {:ok, contents} = File.read(file_path) #"abc\n\n  a\nb\nc\n\n  ab\nac\n\n  a\na\na\na\n\n  b"
