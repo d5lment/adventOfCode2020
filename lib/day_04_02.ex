@@ -55,6 +55,7 @@ defmodule Day0402 do
   end
 
   def validate_field(:hcl, field_value) do
+    # a # followed by exactly six characters 0-9 or a-f.
     Regex.match?(~r/^#[\da-f]{6}$/, field_value)
   end
 

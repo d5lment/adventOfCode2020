@@ -1,0 +1,15 @@
+dull maroon bags contain 3 posh green bags, 1 shiny gold bag, 5 light salmon bags, 1 posh teal bag.
+dim coral bags contain 1 shiny gold bag
+pale crimson bags contain 5 shiny gold bags, 2 striped chartreuse bags, 5 bright brown bags.
+dark chartreuse bags contain 1 dark maroon bag, 5 shiny gold bags.
+wavy black bags contain 2 shiny gold bags.
+light bronze bags contain 1 shiny gold bag, 1 striped bronze bag.
+
+__________
+shiny gold bags contain 2 mirrored orange bags, 2 dotted coral bags, 3 dim fuchsia bags.
+___
+pale crimson bags contain 5 shiny gold bags, 2 striped chartreuse bags, 5 bright brown bags.
+    -plaid violet bags contain 2 pale crimson bags, 1 mirrored crimson bag.
+    -dim white bags contain 2 pale crimson bags, 4 clear brown bags, 2 mirrored coral bags.
+    -plaid gold bags contain 5 pale crimson bags, 4 clear tan bags, 3 wavy turquoise bags, 2 dim chartreuse bags.
+___
